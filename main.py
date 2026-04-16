@@ -17,24 +17,26 @@ def nat_lang_inputs(textFile=None):
     
     # get structure as properties
     
-    structure=get_structs(inp_fname=textFile)
+    structures=get_structs(inp_fname=textFile)
     
-    properties=parse_struct(structure)
-    print(properties)
-    
-    # search materials project for matching material IDs
-    ids=get_matIDs(properties)
-    
-    list_ids=[]
-    for mat in ids:
-        list_ids.append(mat.material_id)
+    for structure in structures:
+        print(f"Operating on structure {structure}")
+        properties=parse_struct(structure)
+        print(properties)
         
-    print("Materials Project IDs matching query \n", list_ids)
-
-    for matprID in list_ids:
-        st=get_structure_from_id([matprID])
-        test_struct=st[0]
-        output_cif(test_struct, properties["formula"],tags=matprID)
+        # search materials project for matching material IDs
+        ids=get_matIDs(properties)
+        
+        list_ids=[]
+        for mat in ids:
+            list_ids.append(mat.material_id)
+            
+        print("Materials Project IDs matching query \n", list_ids)
+    
+        for matprID in list_ids:
+            st=get_structure_from_id([matprID])
+            test_struct=st[0]
+            output_cif(test_struct, properties["formula"],tags=matprID)
 
 
     #st=get_structure_from_id(list_ids)
