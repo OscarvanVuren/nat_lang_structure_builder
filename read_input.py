@@ -20,7 +20,7 @@ def get_structs(userinp=True, inp_fname=None):
 def parse_struct(structure):
     from google import genai
 
-    query_base="Return only the chemical formula, component elemental symbols grouped as a python list, crystal system, space group, in that order and with no other information of the following material."
+    query_base="Return only the chemical formula, component elemental symbols grouped as a python list, crystal system, space group, in that order and on individual lines, with no other information of the following material."
 
     #st=get_structs()
     #st="silicon in the diamond cubic structure"
