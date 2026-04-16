@@ -1,21 +1,13 @@
-# Main routine for natural language parser
-
 def nat_lang_inputs(textFile=None):
+    """
+    Main routine for natural language parser
+    textfile: str, filename of text file containing material descriptions
     
-    from mp_api.client import MPRester
-    import os
+    """
     
     from read_input import get_structs, parse_struct
     from matProj_interface import get_matIDs, get_structure_from_id
     from write_outputs import output_cif
-    
-    # check for api keys
-    #if "MP_API_KEY" or "GEMINI_API_KEY" not in os.environ:
-    #    print("API keys not found")
-    #    exit()
-    #print("API keys found")
-    
-    # get structure as properties
     
     structures=get_structs(inp_fname=textFile)
     
@@ -37,13 +29,4 @@ def nat_lang_inputs(textFile=None):
             st=get_structure_from_id([matprID])
             test_struct=st[0]
             output_cif(test_struct, properties["formula"],tags=matprID)
-
-
-    #st=get_structure_from_id(list_ids)
-    #print(st)
-    #test_struct=st[0]
-    
-    #output_cif(test_struct, properties["formula"])
-    
-    #with open("test.txt","w") as f:
-    #    f.write(test_struct)
+            

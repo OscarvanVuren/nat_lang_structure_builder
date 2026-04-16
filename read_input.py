@@ -1,4 +1,10 @@
 def get_structs(userinp=True, inp_fname=None):
+    """
+    Takes a user input and returns a string or list of structures
+
+    userinp: bool, activates CLI user input
+    inp_fname: str, name of file from which structuresa are read
+    """
 
     if inp_fname is not None:
         userinp=False
@@ -18,13 +24,19 @@ def get_structs(userinp=True, inp_fname=None):
     return structure
 
 def parse_struct(structure):
+    """
+    Parses structrues into the Gemini LLM to convert natural language into material identifiers
+
+    structure: str, natural language representation of a material
+
+    returns prop_dict: dict, dictionary containing the formula, elements, crystal system and space_group of the material, as determined by the LLM
+    
+    """
     from google import genai
 
+    # To ensure standardisation and reproducibility, LLM prompt is very strictly controlled
     query_base="Return only the chemical formula, component elemental symbols grouped as a python list, crystal system, space group, in that order and on individual lines, with no other information of the following material."
 
-    #st=get_structs()
-    #st="silicon in the diamond cubic structure"
-    #st="gamma alumina"
     c=genai.Client()
     
     response = c.models.generate_content(
@@ -33,19 +45,18 @@ def parse_struct(structure):
     r=response.text
     c.close()
     
-    #print(r)
-    
     props=["formula","elements","crystal_system","space_group"]
     prop_dict={}
     p=0
     for info in r.splitlines():
         prop_dict[props[p]]=info
         p+=1
-    # convert 'elements' into list
-    #strip=prop_dict["elements"].strip("[]")
-    #replace_sing_quote=strip.replace("'","")
-    #replace_wsp=replace_sing_quote.replace(" ","")
-    #lst=replace_wsp.split(",")
-    #prop_dict["elements"]=lst
+
+    # convert 'elements' into Python list
+    strip=prop_dict["elements"].strip("[]")
+    replace_sing_quote=strip.replace("'","")
+    replace_wsp=replace_sing_quote.replace(" ","")
+    lst=replace_wsp.split(",")
+    prop_dict["elements"]=lst
 
     return prop_dict
