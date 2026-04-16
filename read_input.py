@@ -33,7 +33,7 @@ def parse_struct(structure):
     r=response.text
     c.close()
     
-    print(r)
+    #print(r)
     
     props=["formula","elements","crystal_system","space_group"]
     prop_dict={}

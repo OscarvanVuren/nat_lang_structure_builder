@@ -1,4 +1,13 @@
 
-def output_cif(struct,formula):
+def output_cif(struct,formula,tags=None):
 
-    struct.to(filename=f"{formula}.cif")
+    if tags is not None:
+        filename=f"{formula}_{tags}.cif"
+
+    else:
+        filename=f"{formula}.cif"
+        
+    print(f"Writing file {filename}")
+    struct.to(filename=filename)
+
+    

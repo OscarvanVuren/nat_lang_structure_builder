@@ -28,12 +28,20 @@ def nat_lang_inputs(textFile=None):
     list_ids=[]
     for mat in ids:
         list_ids.append(mat.material_id)
-        #print(mat.material_id)
+        
+    print("Materials Project IDs matching query \n", list_ids)
+
+    for matprID in list_ids:
+        st=get_structure_from_id([matprID])
+        test_struct=st[0]
+        output_cif(test_struct, properties["formula"],tags=matprID)
+
+
+    #st=get_structure_from_id(list_ids)
+    #print(st)
+    #test_struct=st[0]
     
-    st=get_structure_from_id(list_ids)
-    test_struct=st[0]
-    
-    output_cif(test_struct, properties["formula"])
+    #output_cif(test_struct, properties["formula"])
     
     #with open("test.txt","w") as f:
     #    f.write(test_struct)
