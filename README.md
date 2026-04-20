@@ -26,3 +26,12 @@ from nat_lang_structure_builder.main import nat_lang_inputs
 
 nat_lang_inputs("test_mats.txt")
 ```
+
+## Design Considerations
+Modularity and extensibility was a key design choice here, though functional programming was used to simplify and accelerate production. The `.cif` file structure was chosen as it is readily compatible with software such as ASE for the setup of DFT simualations. This also matches the files that would be taken from experimental databases such as the ICSD. Writing outputs has been separated into its own routine to allow additional file formats in future.
+
+The scope of materials that this code should be able to manage extends as far as the materials project database allows. This database contains simulated structures for many materials, and the code will return all strutures that match a query. Currently the choice of material needs to be specific, for example "a perovskite oxide with titanium **and** barium", rather than general; "a perovskite oxide with titanium **or** barium".
+
+The program returns structured output files that can be used as geometry inputs into a DFT simulation and can convert natural language into `.cif` structures. Given more time, I would like to have expanded the scope to include experimental structures as well as simulated structures, through an interface to the Inorganic Crystal Structure Database.
+
+Further selection of materials, considering computed properties such as lattice parameters (via the total volume of the unit cell), band gaps and electronic energies, would be possible. Time constraints enforced the choice of keys for selection of materials from the Materials Project Database, though these keys could be expanded relatively simply.
