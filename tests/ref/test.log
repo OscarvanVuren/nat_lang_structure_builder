@@ -1,0 +1,26 @@
+Operating on structure silicon in the diamond cubic structure
+
+{'formula': 'Si', 'elements': ['Si'], 'crystal_system': 'Cubic', 'space_group': 'Fd-3m'}
+Materials Project IDs matching query 
+ [MPID(mp-149), MPID(mp-16220)]
+Writing file Si_mp-149.cif
+Writing file Si_mp-16220.cif
+Operating on structure a perovskite oxide with titanium and barium
+
+{'formula': 'BaTiO3', 'elements': ['Ba', 'Ti', 'O'], 'crystal_system': 'Tetragonal', 'space_group': 'P4mm'}
+Materials Project IDs matching query 
+ [MPID(mp-5986)]
+Writing file BaTiO3_mp-5986.cif
+Operating on structure face-centred cubic copper
+
+{'formula': 'Cu', 'elements': ['Cu'], 'crystal_system': 'cubic', 'space_group': 'Fm-3m'}
+Materials Project IDs matching query 
+ [MPID(mp-30)]
+Writing file Cu_mp-30.cif
+Operating on structure wurtzite gallium nitride
+
+{'formula': 'GaN', 'elements': ['Ga', 'N'], 'crystal_system': 'Hexagonal', 'space_group': 'P6_3mc'}
+Materials Project IDs matching query 
+ [MPID(mp-1181864), MPID(mp-804)]
+Writing file GaN_mp-1181864.cif
+Writing file GaN_mp-804.cif

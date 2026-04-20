@@ -7,7 +7,8 @@ def get_matIDs(properties):
                                             crystal_system=properties["crystal_system"],
                                             spacegroup_symbol=properties["space_group"],
                                             num_elements=(len(properties["elements"]),len(properties["elements"])),
-                                            fields=["material_id"])
+                                            fields=["material_id"],
+                                            )
     return mats
 
 def get_structure_from_id(mpID):
