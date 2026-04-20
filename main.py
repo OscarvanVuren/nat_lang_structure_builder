@@ -1,4 +1,4 @@
-def nat_lang_inputs(textFile=None):
+def nat_lang_inputs(textFile=None,max_matches=5):
     """
     Main routine for natural language parser
     textfile: str, filename of text file containing material descriptions
@@ -24,6 +24,12 @@ def nat_lang_inputs(textFile=None):
             list_ids.append(mat.material_id)
             
         print("Materials Project IDs matching query \n", list_ids)
+        # stop for too many matches
+        if len(list_ids)>max_matches:
+            print(f"Number of matched materials selected is greater than the threshold set of {max_matches} \n",
+                  f"Consider making your query more specific or increasing max_matches.")
+            exit()
+
     
         for matprID in list_ids:
             st=get_structure_from_id([matprID])
